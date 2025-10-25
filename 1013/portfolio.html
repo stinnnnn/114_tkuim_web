@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的作品集｜詹濬遠</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- 自訂 CSS（含 hover 效果與主題細節） -->
+  <style>
+    :root {
+      /* 可以切換主色：primary / success / info / warning / danger */
+      --brand-clr: var(--bs-primary);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Hero 背景與按鈕微動畫 */
+    #home {
+      background: linear-gradient(rgba(13,110,253,.08), rgba(13,110,253,.08));
+    }
+    .btn-raise { transition: transform .15s ease, box-shadow .15s ease; }
+    .btn-raise:hover { transform: translateY(-1px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
+
+    /* Card hover 效果 */
+    .card.card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card.card-hover:hover { transform: translateY(-4px); box-shadow: 0 1rem 2rem rgba(0,0,0,.15); }
+
+    /* 小圓頭像大小限制 */
+    .avatar-lg { width: 180px; height: 180px; object-fit: cover; }
+
+    /* 區塊間距微調（已搭配 py-5） */
+    section h2 span.badge { vertical-align: middle; }
+
+    /* Footer 社群 icon 連結間距 */
+    .social a { display:inline-block; margin: 0 .4rem; }
+
+    img { border-radius: 10px; }
+
+    .card-img-top {
+  height: 200px;        /* 固定圖片高度，可依需要調整 180~250px */
+  object-fit: cover;    /* 保持比例並裁切超出的部分 */
+}
+
+  </style>
+</head>
+<body>
+  <!-- 1. 導航列 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">詹濬遠</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">關於</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">技能</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">作品</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">聯絡</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 顯示重要訊息（Alert 加分項） -->
+  <div class="alert alert-info border-0 rounded-0 text-center mb-0" role="alert">
+    📣 歡迎參觀我的作品集！下方可找到技能與專案連結。
+  </div>
+
+  <!-- 2. Hero Section -->
+  <section id="home" class="py-5">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <h1 class="display-4 fw-bold mb-3">嗨，我是 <span class="text-primary">詹濬遠</span></h1>
+          <p class="lead text-secondary mb-4">資訊管理系學生，擅長前端基礎、Java 與資料庫。這裡是我用 Bootstrap 5 打造的響應式作品集。</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="#portfolio" class="btn btn-primary btn-raise">查看作品</a>
+            <a href="#contact" class="btn btn-outline-primary btn-raise">聯絡我</a>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center">
+          <img src="myphoto.jpg" alt="個人頭像" class="img-fluid rounded-circle avatar-lg shadow" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 關於我 About -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">關於我 <span class="badge text-bg-primary">About</span></h2>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0 text-center">
+          <img src="aboutme.jpg" class="img-fluid rounded-circle shadow" alt="關於我的圖片" style="width:300px; height:auto;" />
+        </div>
+        <div class="col-md-6">
+          <h3 class="fw-bold mb-3">你好！</h3>
+          <p class="text-muted mb-2">我目前就讀於淡江大學資管系，對 <span class="fw-semibold">Web 前端、Java 程式設計、資料庫</span> 有濃厚興趣。</p>
+          <p class="mb-2">平時習慣以 <span class="text-primary fw-semibold">系統化</span> 的方式紀錄學習與專案歷程，並持續累積實作作品。</p>
+          <p class="fs-6">近期目標：完成一個可上線的 <span class="text-decoration-underline"></span> 小專題，並提升英語能力。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 技能展示 Skills -->
+  <section id="skills" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">我的技能 <span class="badge text-bg-primary">Skills</span></h2>
+      <div class="row g-4">
+        <!-- Skill 1 -->
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="skill1.png" class="me-2" style="width:60px;height:60px;" alt="技能1">
+                <h5 class="card-title mb-0">JavaScript / Bootstrap</h5>
+              </div>
+              <p class="card-text">能以 Bootstrap 5 製作 RWD 版面，整合表單、卡片與導覽列等元件。</p>
+              <div class="mb-2 small">熟練度 <span class="badge text-bg-success">中高</span></div>
+              <div class="progress" role="progressbar" aria-label="JS 熟練度" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 70%">70%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="skill2.png" class="me-2" style="width:60px;height:60px;" alt="技能2">
+                <h5 class="card-title mb-0">Java</h5>
+              </div>
+              <p class="card-text">具備物件導向基礎，能撰寫簡單演算法、資料結構與課堂專題。</p>
+              <div class="mb-2 small">熟練度 <span class="badge text-bg-primary">中等</span></div>
+              <div class="progress" role="progressbar" aria-label="Java 熟練度" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 60%">60%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="skill3.png" class="me-2" style="width:60px;height:60px;" alt="技能3">
+                <h5 class="card-title mb-0">SQL / 資料庫</h5>
+              </div>
+              <p class="card-text">能設計基本 ER 模型、撰寫 CRUD 與 JOIN 查詢，理解索引與正規化概念。</p>
+              <div class="mb-2 small">熟練度 <span class="badge text-bg-warning">進階中</span></div>
+              <div class="progress" role="progressbar" aria-label="SQL 熟練度" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 65%">65%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 作品集 Portfolio -->
+  <section id="portfolio" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">作品集 <span class="badge text-bg-primary">Portfolio</span></h2>
+      <div class="row g-4 justify-content-center">
+        <!-- item 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="project1.png" class="card-img-top" alt="多重選單與矩陣運算模組作品圖" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">多重選單與矩陣運算模組</h5>
+              <p class="card-text">以 JavaScript 實作的多功能練習程式，結合多重選單、巢狀條件與函式拆解。
+使用者可透過 prompt() 輸入資料，進行矩陣相加、相乘，或輸出星號矩形等操作，展示基本邏輯運算與互動式設計能力。</p>
+              <a href="https://github.com/stinnnnn/114_tkuim_web/blob/main/w6hw/hw10_extra_practice.js" class="btn btn-sm btn-primary mt-auto" target="_blank">查看詳情</a>
+            </div>
+          </div>
+        </div>
+        <!-- item 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="project2.png" class="card-img-top" alt="AVL 樹驗證器作品圖" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">AVL 樹驗證器</h5>
+              <p class="card-text">以 Java 實作的平衡二元搜尋樹驗證程式，檢查 BST 與 AVL 條件，時間複雜度 O(n)。</p>
+              <a href="https://github.com/stinnnnn/113tkuds_2/blob/main/midterm/M09_AVLValidate.java" class="btn btn-sm btn-primary mt-auto" target="_blank">查看詳情</a>
+            </div>
+          </div>
+        </div>
+        <!-- item 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="project3.png" class="card-img-top" alt="分級所得稅計算器作品圖" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">分級所得稅計算器</h5>
+              <p class="card-text">以 Java 實作的累進稅率計算工具，輸入多筆收入後自動計算稅額與平均值，時間複雜度 O(n)。</p>
+              <a href="https://github.com/stinnnnn/113tkuds/blob/main/finalexam/F04_TieredIncomeTax.java" class="btn btn-sm btn-primary mt-auto" target="_blank">查看詳情</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 聯絡表單 Contact -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">聯絡我 <span class="badge text-bg-primary">Contact</span></h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">姓名</label>
+              <input type="text" class="form-control" id="name" placeholder="請輸入您的姓名" required />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com" required />
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label">主旨</label>
+              <input type="text" class="form-control" id="subject" placeholder="想聊聊什麼主題？" required />
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">訊息</label>
+              <textarea class="form-control" id="message" rows="5" placeholder="請輸入訊息內容" required></textarea>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-raise">送出表單</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+  <div class="container">
+    <div class="mb-2 social">
+      <a href="https://www.facebook.com/zhan.jun.yuan.127068?locale=zh_TW" target="_blank" class="link-light text-decoration-none">Facebook</a>
+      <a href="https://www.instagram.com/zzjiyang__/" target="_blank" class="link-light text-decoration-none">Instagram</a>
+      <a href="https://github.com/stinnnnn" target="_blank" class="link-light text-decoration-none">GitHub</a>
+    </div>
+    <div class="small">© <span id="year"></span> Zhan, Jung-Yuan. All rights reserved.</div>
+  </div>
+</footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 自動年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

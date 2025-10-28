@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>會員註冊表單（Week07）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>會員註冊</h1>
+    <p class="subtitle">含即時驗證、送出攔截、防重送與密碼強度條</p>
+
+    <form id="signup-form" novalidate>
+      <div id="success-box" class="alert success" role="alert" hidden>註冊成功！我們已收到您的資料。</div>
+
+      <div class="form-row">
+        <label for="fullName">姓名<span class="req">*</span></label>
+        <input id="fullName" name="fullName" type="text" required aria-describedby="fullName-error" />
+        <p id="fullName-error" class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email<span class="req">*</span></label>
+        <input id="email" name="email" type="email" required aria-describedby="email-error" />
+        <p id="email-error" class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="form-row">
+        <label for="phone">手機（10 碼）<span class="req">*</span></label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="numeric"
+          pattern="\\d{10}"
+          required
+          aria-describedby="phone-error"
+          placeholder="例如：0912345678"
+        />
+        <p id="phone-error" class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="form-row">
+        <label for="password">密碼（至少 8 碼，英數混合）<span class="req">*</span></label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          minlength="8"
+          required
+          aria-describedby="password-error password-hint"
+        />
+        <p id="password-error" class="error" aria-live="polite"></p>
+
+        <div class="strength">
+          <div id="strength-bar" class="strength-bar" aria-hidden="true"></div>
+          <span id="strength-text" class="strength-text" aria-live="polite">強度：—</span>
+        </div>
+        <p id="password-hint" class="hint">需至少 8 碼，建議混合大小寫、數字與符號。</p>
+      </div>
+
+      <div class="form-row">
+        <label for="confirmPassword">確認密碼<span class="req">*</span></label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          required
+          aria-describedby="confirmPassword-error"
+        />
+        <p id="confirmPassword-error" class="error" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="form-row">
+        <legend>興趣標籤（至少勾選 1 項）<span class="req">*</span></legend>
+
+        <div id="interests" class="tags" aria-describedby="interests-error">
+          <label class="tag">
+            <input type="checkbox" name="interests" value="frontend" /> 前端
+          </label>
+          <label class="tag">
+            <input type="checkbox" name="interests" value="backend" /> 後端
+          </label>
+          <label class="tag">
+            <input type="checkbox" name="interests" value="mobile" /> 行動裝置
+          </label>
+          <label class="tag">
+            <input type="checkbox" name="interests" value="devops" /> DevOps
+          </label>
+          <label class="tag">
+            <input type="checkbox" name="interests" value="uiux" /> UI/UX
+          </label>
+          <label class="tag">
+            <input type="checkbox" name="interests" value="data" /> 資料科學
+          </label>
+        </div>
+        <div class="interest-meta">
+          <span>已選數：<strong id="interest-count">0</strong></span>
+        </div>
+        <p id="interests-error" class="error" aria-live="polite"></p>
+      </fieldset>
+
+      <div class="form-row check">
+        <label class="check-label">
+          <input id="terms" name="terms" type="checkbox" required aria-describedby="terms-error" />
+          我已閱讀並同意服務條款
+        </label>
+        <p id="terms-error" class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="actions">
+        <button id="submitBtn" type="submit" class="btn primary">送出</button>
+        <button id="resetBtn" type="button" class="btn">重設</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="signup_form.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+:root {
+  --brand: #0d6efd;
+}
+body {
+  line-height: 1.6;
+}
+.card-header h5 { margin: 0; }
+#saveHint { transition: opacity .3s ease; }
+.list-group-item .remove-btn { float: right; }
+@media (max-width: 576px) {
+  .navbar-brand { font-size: 1.1rem; }
+}

@@ -5,7 +5,7 @@
 我們製作了一個具有 **表單驗證、即時計算、訂單管理、深色模式、localStorage** 的互動式點餐工具。
 
 此專案已部署至 GitHub Pages：    
-[https://username.github.io/114_web_midterm_project/](https://github.com/stinnnnn/114_tkuim_web/tree/main/114_web_midterm_project)
+(https://github.com/stinnnnn/114_tkuim_web/tree/main/114_web_midterm_project)
 
 ---
 

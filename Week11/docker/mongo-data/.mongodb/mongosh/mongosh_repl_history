@@ -1,0 +1,7 @@
+exit
+show dbs
+exit
+show dbs
+docker exec -it week11-mongo mongosh -u root -p rootpassword
+show dbs 
+show dbs

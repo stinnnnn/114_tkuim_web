@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinDash | Premium Crypto Workspace</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="hexagon" class="logo-icon"></i>
+                <span>FinDash</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Market</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="wallet"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="arrow-left-right"></i>
+                    <span>Transfer</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="history"></i>
+                    <span>History</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="user-profile">
+                <div class="avatar">U</div>
+                <div class="user-info">
+                    <span class="name">User01</span>
+                    <span class="role">Pro Trader</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search tokens (e.g. BTC, ETH)...">
+                </div>
+                <div class="top-actions">
+                    <button class="icon-btn"><i data-lucide="bell"></i></button>
+                    <button class="btn btn-primary">Connect Wallet</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Stats Row -->
+                <div class="stats-container">
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <span>Market Cap</span>
+                            <i data-lucide="globe" class="accent-icon"></i>
+                        </div>
+                        <div class="stat-value">$2.24T</div>
+                        <div class="stat-change positive">
+                            <i data-lucide="arrow-up-right"></i> 2.4%
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <span>24h Volume</span>
+                            <i data-lucide="bar-chart-2" class="accent-icon"></i>
+                        </div>
+                        <div class="stat-value">$84B</div>
+                        <div class="stat-change positive">
+                            <i data-lucide="arrow-up-right"></i> 1.2%
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <span>Dominance</span>
+                            <i data-lucide="pie-chart" class="accent-icon"></i>
+                        </div>
+                        <div class="stat-value">BTC 42.1%</div>
+                        <div class="stat-change negative">
+                            <i data-lucide="arrow-down-right"></i> 0.5%
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Chart Section -->
+                <div class="card chart-section">
+                    <div class="chart-header">
+                        <div class="token-info">
+                            <div class="token-icon btc">₿</div>
+                            <div>
+                                <h2>Bitcoin <span class="ticker">BTC</span></h2>
+                                <div class="live-price">$64,231.40 <span class="positive">+2.1%</span></div>
+                            </div>
+                        </div>
+                        <div class="time-filters">
+                            <button class="time-btn">1H</button>
+                            <button class="time-btn active">1D</button>
+                            <button class="time-btn">1W</button>
+                            <button class="time-btn">1M</button>
+                            <button class="time-btn">1Y</button>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Right Column: Trade & List -->
+                <div class="right-column">
+                    <!-- Trade Widget -->
+                    <div class="card trade-widget">
+                        <div class="trade-tabs">
+                            <button class="trade-tab active">Buy</button>
+                            <button class="trade-tab">Sell</button>
+                        </div>
+                        <div class="trade-form">
+                            <div class="input-group">
+                                <label>Pay</label>
+                                <div class="input-wrapper">
+                                    <input type="number" value="1000">
+                                    <span class="currency">USD</span>
+                                </div>
+                            </div>
+                            <div class="arrow-divider">
+                                <i data-lucide="arrow-down"></i>
+                            </div>
+                            <div class="input-group">
+                                <label>Receive</label>
+                                <div class="input-wrapper">
+                                    <input type="number" value="0.015">
+                                    <span class="currency">BTC</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-full btn-accent">Buy Bitcoin</button>
+                        </div>
+                    </div>
+
+                    <!-- Market List -->
+                    <div class="card market-list">
+                        <h3>Trending Assets</h3>
+                        <ul class="asset-list">
+                            <li class="asset-item">
+                                <div class="asset-left">
+                                    <span class="asset-icon eth">Ξ</span>
+                                    <div>
+                                        <div class="asset-name">Ethereum</div>
+                                        <div class="asset-sub">ETH</div>
+                                    </div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-price">$3,450</div>
+                                    <div class="asset-change positive">+4.2%</div>
+                                </div>
+                            </li>
+                            <li class="asset-item">
+                                <div class="asset-left">
+                                    <span class="asset-icon sol">◎</span>
+                                    <div>
+                                        <div class="asset-name">Solana</div>
+                                        <div class="asset-sub">SOL</div>
+                                    </div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-price">$148</div>
+                                    <div class="asset-change positive">+8.5%</div>
+                                </div>
+                            </li>
+                            <li class="asset-item">
+                                <div class="asset-left">
+                                    <span class="asset-icon xrp">✕</span>
+                                    <div>
+                                        <div class="asset-name">Ripple</div>
+                                        <div class="asset-sub">XRP</div>
+                                    </div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-price">$0.62</div>
+                                    <div class="asset-change negative">-1.2%</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

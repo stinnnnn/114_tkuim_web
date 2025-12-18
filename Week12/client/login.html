@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>登入系統</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        form { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <h2 style="text-align: center;">學員登入</h2>
+        <input type="email" id="email" placeholder="請輸入 Email" required>
+        <input type="password" id="password" placeholder="請輸入密碼" required>
+        <button type="submit">登入</button>
+        <p style="text-align: center; font-size: 0.9em;">還沒帳號？<a href="#">(請用 Postman 註冊)</a></p>
+    </form>
+
+    <script>
+        const form = document.getElementById('loginForm');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // 阻止表單重新整理
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // 1. 發送登入請求
+                const res = await fetch('/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    // ★ 2. 關鍵：把 Token 存進瀏覽器的 localStorage
+                    localStorage.setItem('token', data.token);
+                    // 順便存一下使用者資訊，方便顯示
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    alert('登入成功！');
+                    // 3. 跳轉到首頁
+                    window.location.href = '/index.html';
+                } else {
+                    alert('登入失敗：' + data.error);
+                }
+            } catch (err) {
+                alert('連線錯誤');
+            }
+        });
+    </script>
+</body>
+</html>

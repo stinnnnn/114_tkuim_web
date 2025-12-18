@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: week12-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      # 把資料存在本地的 docker/data 資料夾，重開機資料才不會不見
+      - ./docker/data:/data/db
+      # 設定初始化腳本，資料庫第一次啟動時會執行
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example

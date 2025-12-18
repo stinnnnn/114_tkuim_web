@@ -1,0 +1,12 @@
+# 忽略依賴套件 (最重要！)
+node_modules/
+
+# 忽略敏感資料 (資安觀念！)
+.env
+
+# 忽略資料庫實體檔案
+docker/data/
+
+# 忽略系統產生的垃圾檔
+.DS_Store
+Thumbs.db

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>報名資料管理</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn-del { background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .btn-logout { background: #6c757d; color: white; border: none; padding: 8px 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>報名資料列表</h1>
+        <div>
+            <span id="userInfo">未登入</span>
+            <button class="btn-logout" onclick="logout()">登出</button>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 20px; padding: 10px; background: #f9f9f9;">
+        <h3>新增報名</h3>
+        <input type="text" id="newName" placeholder="姓名">
+        <input type="text" id="newPhone" placeholder="電話">
+        <button onclick="createData()">送出</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>電話</th>
+                <th>建立者 ID</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="dataList">
+            </tbody>
+    </table>
+
+    <script>
+        // 1. 檢查有沒有登入
+        const token = localStorage.getItem('token');
+        const userStr = localStorage.getItem('user');
+
+        if (!token) {
+            alert('請先登入！');
+            window.location.href = '/login.html';
+        }
+
+        // 顯示使用者資訊
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById('userInfo').textContent = `${user.email} (${user.role})`;
+        }
+
+        // 2. 載入資料函式
+        async function loadData() {
+            const res = await fetch('/api/signup', {
+                method: 'GET',
+                headers: {
+                    // ★ 關鍵：把 Token 塞進 Header
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (res.status === 401) {
+                alert('Token 過期，請重新登入');
+                logout();
+                return;
+            }
+
+            const data = await res.json();
+            const tbody = document.getElementById('dataList');
+            tbody.innerHTML = ''; // 清空舊資料
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.phone}</td>
+                    <td style="font-size: 0.8em; color: gray;">${item.ownerId}</td>
+                    <td>
+                        <button class="btn-del" onclick="deleteData('${item._id}')">刪除</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 3. 新增資料函式
+        async function createData() {
+            const name = document.getElementById('newName').value;
+            const phone = document.getElementById('newPhone').value;
+
+            await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // ★ 也要帶 Token
+                },
+                body: JSON.stringify({ name, phone })
+            });
+            
+            // 清空輸入框並重新載入列表
+            document.getElementById('newName').value = '';
+            document.getElementById('newPhone').value = '';
+            loadData();
+        }
+
+        // 4. 刪除資料函式
+        async function deleteData(id) {
+            if (!confirm('確定要刪除嗎？')) return;
+
+            const res = await fetch(`/api/signup/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}` // ★ 也要帶 Token
+                }
+            });
+
+            if (res.ok) {
+                alert('刪除成功');
+                loadData();
+            } else {
+                const err = await res.json();
+                alert('刪除失敗：' + err.error);
+            }
+        }
+
+        // 5. 登出函式
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login.html';
+        }
+
+        // 畫面載入後，立刻抓資料
+        loadData();
+    </script>
+</body>
+</html>
